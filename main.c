@@ -14,20 +14,56 @@
 
 int	main(int argc, char *argv[])
 {
-	t_node	*root;
-	
+	t_node	*a;
+	t_node	*b;
+	int		checker;
+
+	b = NULL;
+	checker = 0;
+	if (argc == 2)
+	{
+		argv = ft_split(argv[1], ' ');
+		argc = count_nums(argv);
+		checker = 1;
+	}
 	check_input(argc, argv);
-	root = fill_list(argc, argv);
-	exit_free(&root);
+	a = fill_list(argc, argv);
+	if (checker == 1)
+		free_split(argv);
+	if (is_sorted(a) == 0)
+	{
+		exit_free(&a);
+	}
+	if (argc <= 4)
+		tiny_sort(&a);
+	else if (argc > 4)
+		sort(&a, &b);
+	exit_free(&a);
 }
-/*
-void	tester(t_node *root)
+
+void	print_list(t_node **a, t_node **b)
 {
-	int arr[] = {1, 2, 3, 4, 5}
-	t_node *b;
-	
+	ft_printf("-------------\na:\n");
+	for(t_node *curr = *a; curr != NULL; curr = curr->next)
+		ft_printf("%d\n", curr->x);
+	ft_printf("\nb:\n");
+	for(t_node *curr = *b; curr != NULL; curr = curr->next)
+		ft_printf("%d\n", curr->x);
 }
-*/
+
+void	tiny_sort(t_node **stack)
+{
+	if (count_stack(stack) == 3)
+	{
+		if (*stack == find_biggest(*stack))
+			rotate('a', stack);
+		else if ((*stack)->next == find_biggest(*stack))
+			rrotate('a', stack);
+	}
+	if ((*stack)->x > (*stack)->next->x)
+		sa(stack);
+}
+
 void	check_input(int argc, char *argv[])
 {
 	int	i;
@@ -36,7 +72,7 @@ void	check_input(int argc, char *argv[])
 	i = 1;
 	if (argc < 3)
 	{
-		ft_printf("Error\nNot enough numbers to sort\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	while (i < argc)
@@ -48,7 +84,7 @@ void	check_input(int argc, char *argv[])
 		{
 			if (argv[i][j] > '9' || argv[i][j] < '0')
 			{
-				ft_printf("Error\nInput must only be numbers\n");
+				ft_printf("Error\n");
 				exit(1);
 			}
 			j++;
@@ -70,7 +106,7 @@ t_node	*fill_list(int argc, char *argv[])
 		num = ft_atol(argv[i]);
 		if (num > 2147483647 || num < -2147483648)
 		{
-			ft_printf("Error\nInput must be integer\n");
+			ft_printf("Error\n");
 			exit_free(&node);
 		}
 		check_dups(&node, num);
@@ -78,8 +114,6 @@ t_node	*fill_list(int argc, char *argv[])
 			exit_free(&node);
 		i++;
 	}
-	for(t_node *curr = node; curr != NULL; curr = curr->next)
-		ft_printf("%d\n", curr->x);
 	return (node);
 }
 
@@ -92,7 +126,7 @@ void	check_dups(t_node **node, int value)
 	{
 		if (curr->x == value)
 		{
-			ft_printf("Error\nDuplicates found\n");
+			ft_printf("Error\n");
 			exit_free(node);
 		}
 		curr = curr->next;

@@ -44,19 +44,22 @@ void	ss(t_node **a, t_node **b)
 	(*b)->next->x = tmp;
 	write(1, "ss\n", 3);
 }
-
-void	push(char direc, t_node **minus, t_node **plus)
+void push(char direc, t_node **minus, t_node **plus)
 {
-	
-	if (*minus == NULL)
-		return ;
-	(*minus)->next->prev = NULL;
-	(*minus)->next = (*plus);
-	(*plus)->prev = (*minus);
-	(*plus) = (*minus);
-	(*minus) = (*minus)->next;
-	if (direc == 'a')
-		write(1, "pa\n", 3);
-	else if (direc == 'b')
-		write(1, "pb\n", 3);
+    t_node *tmp;
+
+    if (*minus == NULL)
+        return;
+    tmp = (*minus)->next;
+    (*minus)->next = *plus;
+    if (*plus != NULL)
+        (*plus)->prev = *minus;
+    *plus = *minus;
+    *minus = tmp;
+    if (*minus != NULL)
+        (*minus)->prev = NULL;
+    if (direc == 'a')
+        write(1, "pa\n", 3);
+    else if (direc == 'b')
+        write(1, "pb\n", 3);
 }

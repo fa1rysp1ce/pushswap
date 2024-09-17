@@ -19,7 +19,12 @@ LIB = libftplus.a
 LIB_P = $(addprefix $(LIB_DIR), $(LIB))
 
 SRCS = main.c \
-		helpers.c
+		helpers.c \
+		helpers2.c \
+		actions1.c \
+		actions2.c \
+		sort.c \
+		push_b.c
 
 OBJS = $(SRCS:.c=.o)
 

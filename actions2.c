@@ -32,6 +32,7 @@ void	rrr(t_node **a, t_node **b)
 	rrotate('r', a);
 	rrotate('r', b);
 	write(1, "rrr\n", 4);
+	print_list(a, b);
 }
 
 void	rotate(char check, t_node **stack)
@@ -43,7 +44,7 @@ void	rotate(char check, t_node **stack)
 	(*stack)->prev = last_node;
 	(*stack) = (*stack)->next;
 	(*stack)->prev = NULL;
-	(*stack) = NULL;
+	last_node->next->next = NULL;
 	if (check == 'a')
 		write(1, "ra\n", 4);
 	if (check == 'b')
@@ -55,4 +56,5 @@ void	rr(t_node **a, t_node **b)
 	rotate('r', a);
 	rotate('r', b);
 	write(1, "rr\n", 4);
+	print_list(a, b);
 }
