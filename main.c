@@ -15,29 +15,28 @@
 int	main(int argc, char *argv[])
 {
 	t_node	*a;
-	t_node	*b;
+	char	**arr;
 	int		checker;
 
-	b = NULL;
 	checker = 0;
 	if (argc == 2)
 	{
-		argv = ft_split(argv[1], ' ');
-		argc = count_nums(argv);
+		arr = ft_split(argv[1], ' ');
+		argc = count_nums(arr) + 1;
 		checker = 1;
 	}
-	check_input(argc, argv);
-	a = fill_list(argc, argv);
+	else
+		arr = argv + 1;
+	check_input(argc - 1, arr);
+	a = fill_list(argc - 1, arr);
 	if (checker == 1)
-		free_split(argv);
+		free_split(arr);
 	if (is_sorted(a) == 0)
-	{
 		exit_free(&a);
-	}
 	if (argc <= 4)
 		tiny_sort(&a);
 	else if (argc > 4)
-		sort(&a, &b);
+		sort(&a);
 	exit_free(&a);
 }
 
@@ -69,12 +68,9 @@ void	check_input(int argc, char *argv[])
 	int	i;
 	int	j;
 
-	i = 1;
-	if (argc < 3)
-	{
-		ft_printf("Error\n");
+	i = 0;
+	if (argc < 1)
 		exit(1);
-	}
 	while (i < argc)
 	{
 		j = 0;
@@ -99,7 +95,7 @@ t_node	*fill_list(int argc, char *argv[])
 	int		i;
 	long	num;
 
-	i = 1;
+	i = 0;
 	node = NULL;
 	while (i < argc)
 	{

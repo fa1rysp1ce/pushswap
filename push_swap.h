@@ -69,7 +69,7 @@ void	set_index(t_node **stack);
 void	free_split(char **arr);
 
 //sort
-void	sort(t_node **a, t_node **b);
+void	sort(t_node **a);
 void	push_a(t_node **a, t_node **b);
 t_node	*find_target_a(t_node *node, t_node **stack);
 

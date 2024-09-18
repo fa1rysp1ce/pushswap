@@ -1,12 +1,15 @@
 #include "push_swap.h"
 
-void	sort(t_node **a, t_node **b)
+void	sort(t_node **a)
 {
+	t_node	*b;
 	t_node	*smallest;
-	push('b', a, b);
-	push('b', a, b);
-	push_b(a, b);
-	push_a(a, b);
+	
+	b = NULL;
+	push('b', a, &b);
+	push('b', a, &b);
+	push_b(a, &b);
+	push_a(a, &b);
 	smallest = find_smallest(*a);
 	while (is_sorted(*a) == 1)
 	{
@@ -15,7 +18,7 @@ void	sort(t_node **a, t_node **b)
 		else
 			rrotate('a', a);
 	}
-	print_list(a, b);
+	print_list(a, &b);
 }
 
 void	push_a(t_node **a, t_node **b)
