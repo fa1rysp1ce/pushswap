@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_b.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junruh <junruh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 14:30:01 by junruh            #+#    #+#             */
+/*   Updated: 2024/09/19 19:40:04 by junruh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_b(t_node **a, t_node **b)
 {
-	t_node *curr;
+	t_node	*curr;
 
 	while (count_stack(a) > 3)
 	{
@@ -17,7 +29,6 @@ void	push_b(t_node **a, t_node **b)
 		find_cheapest(a, b);
 	}
 	tiny_sort(a);
-	print_list(a, b);
 }
 
 int	cost(t_node *node, t_node **a, t_node **b)
@@ -69,7 +80,6 @@ void	push_node(t_node *node, t_node **a, t_node **b)
 			rotate('a', a);
 		if (node->median == 1)
 			rrotate('a', a);
-		print_list(a, b);
 	}
 	while (node->target->prev != NULL)
 	{
@@ -77,7 +87,6 @@ void	push_node(t_node *node, t_node **a, t_node **b)
 			rotate('b', b);
 		if (node->target->median == 1)
 			rrotate('b', b);
-		print_list(a, b);
 	}
 	push('b', a, b);
 }

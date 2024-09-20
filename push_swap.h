@@ -6,7 +6,7 @@
 /*   By: junruh <junruh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:40:09 by junruh            #+#    #+#             */
-/*   Updated: 2024/09/10 18:32:12 by junruh           ###   ########.fr       */
+/*   Updated: 2024/09/19 18:21:04 by junruh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,12 @@ typedef struct s_node
 	struct s_node	*target;
 	struct s_node	*next;
 	struct s_node	*prev;
-} t_node;
+}	t_node;
 
-
-void	print_list(t_node **a, t_node **b);
-
-
-
+void	print_list(t_node **a);
 
 int		main(int argc, char *argv[]);
 
-void	tiny_sort(t_node **stack);
 void	check_input(int argc, char *argv[]);
 t_node	*fill_list(int argc, char *argv[]);
 int		add_node(t_node **node, int value);
@@ -63,6 +58,7 @@ int		is_sorted(t_node *stack);
 int		count_nums(char *arr[]);
 
 //helpers2
+void	tiny_sort(t_node **stack);
 t_node	*find_biggest(t_node *stack);
 t_node	*find_smallest(t_node *stack);
 void	set_index(t_node **stack);
@@ -71,6 +67,8 @@ void	free_split(char **arr);
 //sort
 void	sort(t_node **a);
 void	push_a(t_node **a, t_node **b);
+void	find_cheapest_a(t_node **a, t_node **b);
+void	push_node_a(t_node *node, t_node **a, t_node **b);
 t_node	*find_target_a(t_node *node, t_node **stack);
 
 //push_b

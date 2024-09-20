@@ -6,7 +6,7 @@
 /*   By: junruh <junruh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:07:47 by junruh            #+#    #+#             */
-/*   Updated: 2024/09/11 11:41:57 by junruh           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:20:24 by junruh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exit_free(t_node **node)
 {
 	t_node	*curr;
 	t_node	*tmp;
-	
+
 	curr = *node;
 	while (curr != NULL)
 	{
@@ -30,7 +30,7 @@ void	exit_free(t_node **node)
 t_node	*find_end(t_node **node)
 {
 	t_node	*curr;
-	
+
 	if (*node == NULL)
 		return (NULL);
 	curr = *node;

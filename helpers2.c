@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junruh <junruh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 14:29:29 by junruh            #+#    #+#             */
+/*   Updated: 2024/09/19 18:14:44 by junruh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
+
+void	tiny_sort(t_node **stack)
+{
+	if (count_stack(stack) == 3)
+	{
+		if (*stack == find_biggest(*stack))
+			rotate('a', stack);
+		else if ((*stack)->next == find_biggest(*stack))
+			rrotate('a', stack);
+	}
+	if ((*stack)->x > (*stack)->next->x)
+		sa(stack);
+}
 
 t_node	*find_biggest(t_node *stack)
 {

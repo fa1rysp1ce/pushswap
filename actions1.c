@@ -6,7 +6,7 @@
 /*   By: junruh <junruh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:59 by junruh            #+#    #+#             */
-/*   Updated: 2024/09/11 12:49:16 by junruh           ###   ########.fr       */
+/*   Updated: 2024/09/19 18:26:04 by junruh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,23 @@ void	ss(t_node **a, t_node **b)
 	(*b)->next->x = tmp;
 	write(1, "ss\n", 3);
 }
-void push(char direc, t_node **minus, t_node **plus)
-{
-    t_node *tmp;
 
-    if (*minus == NULL)
-        return;
-    tmp = (*minus)->next;
-    (*minus)->next = *plus;
-    if (*plus != NULL)
-        (*plus)->prev = *minus;
-    *plus = *minus;
-    *minus = tmp;
-    if (*minus != NULL)
-        (*minus)->prev = NULL;
-    if (direc == 'a')
-        write(1, "pa\n", 3);
-    else if (direc == 'b')
-        write(1, "pb\n", 3);
+void	push(char direc, t_node **minus, t_node **plus)
+{
+	t_node	*tmp;
+
+	if (*minus == NULL)
+		return ;
+	tmp = (*minus)->next;
+	(*minus)->next = *plus;
+	if (*plus != NULL)
+		(*plus)->prev = *minus;
+	*plus = *minus;
+	*minus = tmp;
+	if (*minus != NULL)
+		(*minus)->prev = NULL;
+	if (direc == 'a')
+		write(1, "pa\n", 3);
+	else if (direc == 'b')
+		write(1, "pb\n", 3);
 }

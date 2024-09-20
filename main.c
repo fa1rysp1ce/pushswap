@@ -6,7 +6,7 @@
 /*   By: junruh <junruh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:40:27 by junruh            #+#    #+#             */
-/*   Updated: 2024/09/11 17:29:00 by junruh           ###   ########.fr       */
+/*   Updated: 2024/09/19 19:40:19 by junruh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,6 @@ int	main(int argc, char *argv[])
 	exit_free(&a);
 }
 
-void	print_list(t_node **a, t_node **b)
-{
-	ft_printf("-------------\na:\n");
-	for(t_node *curr = *a; curr != NULL; curr = curr->next)
-		ft_printf("%d\n", curr->x);
-	ft_printf("\nb:\n");
-	for(t_node *curr = *b; curr != NULL; curr = curr->next)
-		ft_printf("%d\n", curr->x);
-}
-
-void	tiny_sort(t_node **stack)
-{
-	if (count_stack(stack) == 3)
-	{
-		if (*stack == find_biggest(*stack))
-			rotate('a', stack);
-		else if ((*stack)->next == find_biggest(*stack))
-			rrotate('a', stack);
-	}
-	if ((*stack)->x > (*stack)->next->x)
-		sa(stack);
-}
-
 void	check_input(int argc, char *argv[])
 {
 	int	i;
@@ -80,7 +57,7 @@ void	check_input(int argc, char *argv[])
 		{
 			if (argv[i][j] > '9' || argv[i][j] < '0')
 			{
-				ft_printf("Error\n");
+				write(2, "Error\n", 6);
 				exit(1);
 			}
 			j++;
@@ -99,10 +76,14 @@ t_node	*fill_list(int argc, char *argv[])
 	node = NULL;
 	while (i < argc)
 	{
-		num = ft_atol(argv[i]);
-		if (num > 2147483647 || num < -2147483648)
+		if (argv[i][1] == '\0' && argv[i][0] == '-')
 		{
-			ft_printf("Error\n");
+			
+		}
+		num = ft_atol(argv[i]);
+		if (num > 2147483647 || num < -2147483648 || (argv[i][1] == '\0' && argv[i][0] == '-'))
+		{
+			write(2, "Error\n", 6);
 			exit_free(&node);
 		}
 		check_dups(&node, num);
@@ -116,13 +97,13 @@ t_node	*fill_list(int argc, char *argv[])
 void	check_dups(t_node **node, int value)
 {
 	t_node	*curr;
-	
+
 	curr = *node;
 	while (curr != NULL)
 	{
 		if (curr->x == value)
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			exit_free(node);
 		}
 		curr = curr->next;
@@ -133,7 +114,7 @@ int	add_node(t_node **node, int value)
 {
 	t_node	*new_node;
 	t_node	*curr;
-	
+
 	new_node = malloc(sizeof(t_node));
 	if (new_node == NULL)
 		return (1);
@@ -154,3 +135,13 @@ int	add_node(t_node **node, int value)
 	curr->next = new_node;
 	return (0);
 }
+/*
+void	print_list(t_node **a)
+{
+	ft_printf("-------------\na:\n");
+	for(t_node *curr = *a; curr != NULL; curr = curr->next)
+		ft_printf("%d\n", curr->x);
+	//ft_printf("\nb:\n");
+	//for(t_node *curr = *b; curr != NULL; curr = curr->next)
+	//	ft_printf("%d\n", curr->x);
+}*/
