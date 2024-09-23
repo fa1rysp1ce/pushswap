@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 	if (argc <= 4)
 		tiny_sort(&a);
 	else if (argc > 4)
-		sort(&a);
+		sort(&a, argc);
 	exit_free(&a);
 }
 

@@ -58,14 +58,19 @@ int		is_sorted(t_node *stack);
 int		count_nums(char *arr[]);
 
 //helpers2
-void	tiny_sort(t_node **stack);
 t_node	*find_biggest(t_node *stack);
 t_node	*find_smallest(t_node *stack);
 void	set_index(t_node **stack);
 void	free_split(char **arr);
 
 //sort
-void	sort(t_node **a);
+void	sort(t_node **a, int count);
+void	tiny_sort(t_node **stack);
+void	sort_five(t_node **a, t_node **b);
+void	sort_four(t_node **a, t_node **b);
+void	smallest_on_top(t_node **a);
+
+//push_b
 void	push_a(t_node **a, t_node **b);
 void	find_cheapest_a(t_node **a, t_node **b);
 void	push_node_a(t_node *node, t_node **a, t_node **b);

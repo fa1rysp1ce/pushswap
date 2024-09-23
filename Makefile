@@ -24,6 +24,7 @@ SRCS = main.c \
 		actions1.c \
 		actions2.c \
 		sort.c \
+		push_a.c \
 		push_b.c
 
 OBJS = $(SRCS:.c=.o)

@@ -13,19 +13,6 @@
 #include "push_swap.h"
 
 
-void	tiny_sort(t_node **stack)
-{
-	if (count_stack(stack) == 3)
-	{
-		if (*stack == find_biggest(*stack))
-			rotate('a', stack);
-		else if ((*stack)->next == find_biggest(*stack))
-			rrotate('a', stack);
-	}
-	if ((*stack)->x > (*stack)->next->x)
-		sa(stack);
-}
-
 t_node	*find_biggest(t_node *stack)
 {
 	t_node	*biggest;
